@@ -1,7 +1,9 @@
 <?php
-    class Roles{
-    const ROLES_EMPLOYEE = 'employee';
-    const ROLES_CLIENT = 'client';
-}
-?>
 
+namespace App\Model;
+
+enum Roles: string
+{
+    case ROLES_EMPLOYEE = 'employee';
+    case ROLES_CLIENT = 'client';
+}
