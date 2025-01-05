@@ -26,7 +26,7 @@ class Reparation
     /**
      * Get the value of id
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -34,7 +34,7 @@ class Reparation
     /**
      * Get the value of workshopName
      */
-    public function getWorkshopName()
+    public function getWorkshopName(): string
     {
         return $this->workshopName;
     }
@@ -44,7 +44,7 @@ class Reparation
      *
      * @return  self
      */
-    public function setWorkshopName($workshopName)
+    public function setWorkshopName($workshopName): static
     {
         $this->workshopName = $workshopName;
 
@@ -54,7 +54,7 @@ class Reparation
     /**
      * Get the value of registerDate
      */
-    public function getRegisterDate()
+    public function getRegisterDate(): DateTime
     {
         return $this->registerDate;
     }
@@ -62,7 +62,7 @@ class Reparation
     /**
      * Get the value of licensePlate
      */
-    public function getLicensePlate()
+    public function getLicensePlate(): string
     {
         return $this->licensePlate;
     }
@@ -72,7 +72,7 @@ class Reparation
      *
      * @return  self
      */
-    public function setLicensePlate($licensePlate)
+    public function setLicensePlate($licensePlate): static
     {
         $this->licensePlate = $licensePlate;
 
@@ -82,7 +82,7 @@ class Reparation
     /**
      * Get the value of photo
      */
-    public function getPhoto()
+    public function getPhoto(): string
     {
         return $this->photo;
     }
@@ -92,7 +92,7 @@ class Reparation
      *
      * @return  self
      */
-    public function setPhoto($photo)
+    public function setPhoto($photo): static
     {
         $this->photo = $photo;
 
