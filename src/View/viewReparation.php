@@ -7,6 +7,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 use App\Model\Roles;
 use App\Model\Reparation;
 use App\Controller\ControllerReparation;
+use App\Exceptions\DatabaseException;
 use DateTime;
 
 // ---- Class ViewReparation -------------------------\\
@@ -37,25 +38,33 @@ class ViewReparation
 
 // ---- Forms Logic ----------------------------------\\
 if (isset($_REQUEST['formOpt'])) {
-    switch ($_REQUEST['formOpt']) {
-        case 'chooseRole':
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
+    try {
+        switch ($_REQUEST['formOpt']) {
+            case 'chooseRole':
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
 
-                if (isset($_GET["optionRole"]) && ($roleCase = Roles::tryFrom($_GET['optionRole']))) {
-                    $_SESSION['optionRole'] = serialize($roleCase); // utilizar serialize porque el session siempre guarda strings
-                } else {
-                    unset($_SESSION['optionRole']);
+                    if (isset($_GET["optionRole"]) && ($roleCase = Roles::tryFrom($_GET['optionRole']))) {
+                        $_SESSION['optionRole'] = serialize($roleCase); // utilizar serialize porque el session siempre guarda strings
+                    } else {
+                        unset($_SESSION['optionRole']);
+                    }
+                    session_write_close();
                 }
-                session_write_close();
-            }
-            break;
-        case 'view':
-            $reparation = (new ControllerReparation)->getReparation();
-            break;
-        case 'insert':
-            $newReparationId = (new ControllerReparation)->createReparation();
-            break;
+                break;
+            case 'view':
+                $reparation = (new ControllerReparation)->getReparation();
+                if (is_null($reparation)) {
+                    $mssg = "Reparation not found";
+                }
+                break;
+            case 'insert':
+
+                $newReparationId = (new ControllerReparation)->createReparation();
+                break;
+        }
+    } catch (DatabaseException $th) {
+        $mssg = $th->getMessage();
     }
 }
 
@@ -66,13 +75,20 @@ if (!isset($_SESSION['optionRole'])) {
     exit;
 }
 
-
 // ---- Render Header --------------------------------\\
 $title = "View Reparation";
 include '../View/layouts/header.php';
 
-if (isset($newReparationId)) {
+if (isset($mssg)) {
     ?>
+    <div>
+        <?= $mssg ?>
+    </div>
+<?php
+}
+
+if (isset($newReparationId)) {
+?>
     <div>
         El identificador de la reparación recien creada es
         <?= $newReparationId ?>

@@ -11,7 +11,7 @@ use App\Service\ServiceReparation;
 // definir la classe
 class ControllerReparation
 {
-    public function getReparation(): Reparation
+    public function getReparation(): Reparation|null
     {
         session_start();
 
