@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 class DatabaseException extends \Exception
 {
-    private $message;
+    public $message;
 
     function __construct(string $message = "")
     {

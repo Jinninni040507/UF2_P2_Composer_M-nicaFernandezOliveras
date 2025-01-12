@@ -14,7 +14,7 @@ class ServiceDB
     public function __construct()
     {
         $this->log = new Logger('mi_logger');
-        $this->log->pushHandler(new StreamHandler(__DIR__ . '/app.log', Level::Error));
+        $this->log->pushHandler(new StreamHandler("../../logs/app_workshop.log", Level::Info));
     }
     public function connect(): mysqli
     {
