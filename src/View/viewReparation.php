@@ -14,7 +14,6 @@ class ViewReparation
 {
     public function render(Reparation $reparation): void
     {
-
 ?>
         <div class="d-flex flex-column m-3">
             <div>Id: <?= $reparation->getId() ?></div>
@@ -31,7 +30,7 @@ class ViewReparation
             </div>
 
         </div>
-<?php
+    <?php
     }
 }
 
@@ -72,6 +71,14 @@ if (!isset($_SESSION['optionRole'])) {
 $title = "View Reparation";
 include '../View/layouts/header.php';
 
+if (isset($newReparationId)) {
+    ?>
+    <div>
+        El identificador de la reparación recien creada es
+        <?= $newReparationId ?>
+    </div>
+<?php
+}
 ?>
 <div class="container d-flex flex-column m-3 gap-4 ">
     <h1>Car Workshop Reparation Menu</h1>
