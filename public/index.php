@@ -23,6 +23,7 @@ include '../src/View/layouts/header.php';
         <option value="employee">Employee</option>
       </select>
       <br /><br />
+      <input type="hidden" name="formOpt" value="chooseRole">
       <input type="submit" value="Enter" />
     </form>
   </div>

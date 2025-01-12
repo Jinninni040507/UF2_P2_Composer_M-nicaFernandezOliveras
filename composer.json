@@ -1,7 +1,7 @@
 {
   "require": {
     "composer": "^2.8",
-    "intervention/image": "^3.9",
+    "intervention/image": "^3.10",
     "monolog/monolog": "^3.8",
     "ramsey/uuid": "^4.7",
     "twbs/bootstrap": "^5.3"
